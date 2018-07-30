@@ -46,20 +46,35 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     if(req.body.genres) profileFields.genres = req.body.genres;
     if(req.body.bio) profileFields.bio = req.body.bio;
     if(req.body.soundcloudUsername) profileFields.soundcloudUsername = req.body.soundcloudUsername;
-    // Experience = split into array
-    if(typeof req.body.experience !== 'undefined') {
-        profileFields.experience = req.body.experience.split(',');
-    };
-    // Education
-    if(typeof req.body.education !== 'undefined') {
-        profileFields.education = req.body.education.split(',');
-    };
+
     // Social
     profileFields.social = {};
     if(req.body.youtube) profileFields.social.youtube = req.body.youtube;
     if(req.body.twitter) profileFields.social.twitter = req.body.twitter;
     if(req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if(req.body.instagram) profileFields.social.instagram = req.body.instagram;
+
+    Profile.findOne({ user: req.user.id })
+        .then(profile => {
+            if(profile) {
+                // Update
+                Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true })
+                    .then(profile => res.json(profile));
+            } else {
+                // Create
+
+                // Check if handle exists
+                Profile.findOne({ handle: profileFields.handle })
+                    .then(profile => {
+                        if(profile){
+                            errors.handle = 'That handle already exists';
+                            res.status(400).json(errors);
+                        }
+                    })
+                // Save profile
+                new Profile(profileFields).save().then(profile => res.json(profile));
+            }
+        })
 
 });
 
