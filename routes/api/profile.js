@@ -5,7 +5,7 @@ const passport = require('passport');
 
 // Load profile model
 const Profile = require('../../models/Profile');
-// Load profile model
+// Load user model
 const User = require('../../models/User');
 
 
