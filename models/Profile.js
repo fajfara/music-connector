@@ -103,9 +103,6 @@ const ProfileSchema = new Schema({
         twitter: {
             type: String
         },
-        youtube: {
-            type: String
-        },
         facebook: {
             type: String
         },
