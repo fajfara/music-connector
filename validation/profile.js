@@ -29,31 +29,31 @@ module.exports = function validateProfileInput(data){
 
     if(!isEmpty(data.social)) {
         if(!Validator.isURL(data.social)){
-            errors.social = 'Not a valid link'
+            errors.website = 'Not a valid link'
         }
     }
 
-    if(!isEmpty(data.social.youtube)) {
-        if(!Validator.isURL(data.social.youtube)){
-            errors.social.youtube = 'Not a valid youtube username'
+    if(!isEmpty(data.youtube)) {
+        if(!Validator.isURL(data.youtube)){
+            errors.youtube = 'Not a valid youtube username'
         }
     }
 
-    if(!isEmpty(data.social.twitter)) {
-        if(!Validator.isURL(data.social.twitter)){
-            errors.social.twitter = 'Not a valid twitter username'
+    if(!isEmpty(data.twitter)) {
+        if(!Validator.isURL(data.twitter)){
+            errors.twitter = 'Not a valid twitter username'
         }
     }
 
-    if(!isEmpty(data.social.facebook)) {
-        if(!Validator.isURL(data.social.facebook)){
-            errors.social.facebook = 'Not a valid facebook username'
+    if(!isEmpty(data.facebook)) {
+        if(!Validator.isURL(data.facebook)){
+            errors.facebook = 'Not a valid facebook username'
         }
     }
 
-    if(!isEmpty(data.social.instagram)) {
-        if(!Validator.isURL(data.social.instagram)){
-            errors.social.instagram = 'Not a valid instagram username'
+    if(!isEmpty(data.instagram)) {
+        if(!Validator.isURL(data.instagram)){
+            errors.instagram = 'Not a valid instagram username'
         }
     }
 
